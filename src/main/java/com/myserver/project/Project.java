@@ -1,19 +1,15 @@
-package com.myserver.portfolio;
+package com.myserver.project;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.myserver.portfolio.Portfolio;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Getter
-@AllArgsConstructor
+@Setter
 @EqualsAndHashCode
-@ToString
+@NoArgsConstructor
+@Entity
 public class Project {
     @SequenceGenerator(name = "project_seq",
             sequenceName = "project_seq",
@@ -24,6 +20,10 @@ public class Project {
             generator = "project_seq")
     private Long id;
     private String title;
+    private String description;
     private String imgLink;
+    private String ghLink;
     private ProjectSection section;
+    @ManyToOne
+    private Portfolio portfolio;
 }

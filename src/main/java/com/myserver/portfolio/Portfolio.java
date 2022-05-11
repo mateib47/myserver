@@ -1,12 +1,13 @@
 package com.myserver.portfolio;
 
+import com.myserver.project.Project;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,10 +15,25 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class Portfolio {
+    @SequenceGenerator(name = "portfolio_seq",
+            sequenceName = "portfolio_seq",
+            allocationSize = 1)
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "portfolio_seq")
     private Long id;
+    private String name;
+    @OneToMany
+    private List<Project> projects;
     //projects - name, description, img link, github link
     //testimonials - name - description
-    //contact data
+    //person name email...
+
+
+    public Portfolio(String name) {
+        this.name = name;
+    }
 
     public void setId(Long id) {
         this.id = id;

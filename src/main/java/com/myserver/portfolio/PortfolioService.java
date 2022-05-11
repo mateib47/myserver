@@ -1,5 +1,6 @@
 package com.myserver.portfolio;
 
+import com.myserver.project.Project;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class PortfolioService {
     private PortfolioRepository portfolioRepository;
 
-    public List<Project> getProjects(){
-        return portfolioRepository.getAll();
+    public Portfolio getProjects(Long id){
+        return portfolioRepository.getPortfolioById(id);
     }
 }
