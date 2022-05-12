@@ -1,5 +1,6 @@
 package com.myserver.portfolio;
 
+import com.myserver.person.Person;
 import com.myserver.project.Project;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,7 +27,8 @@ public class Portfolio {
     private String name;
     @OneToMany
     private List<Project> projects;
-    //projects - name, description, img link, github link
+    @ManyToOne
+    private Person person;
     //testimonials - name - description
     //person name email...
 
