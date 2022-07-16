@@ -25,10 +25,15 @@ public class Portfolio {
             generator = "portfolio_seq")
     private Long id;
     private String name;
-    @OneToMany
+
     private List<Project> projects;
-    @ManyToOne
-    private Person person;
+
+    @OneToMany(targetEntity=Project.class, mappedBy="portfolio", fetch=FetchType.EAGER)
+    public List<Project> getProjects() {
+        return projects;
+    }
+   // @ManyToOne
+   // private Person person;
     //testimonials - name - description
     //person name email...
 

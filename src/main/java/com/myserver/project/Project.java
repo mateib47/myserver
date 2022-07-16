@@ -24,6 +24,16 @@ public class Project {
     private String imgLink;
     private String ghLink;
     private ProjectSection section;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "portfolioId")
     private Portfolio portfolio;
+
+    public Project(String title, String description, String imgLink, String ghLink, ProjectSection section, Portfolio portfolio) {
+        this.title = title;
+        this.description = description;
+        this.imgLink = imgLink;
+        this.ghLink = ghLink;
+        this.section = section;
+        this.portfolio = portfolio;
+    }
 }
