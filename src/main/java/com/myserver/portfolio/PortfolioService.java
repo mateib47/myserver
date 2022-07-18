@@ -24,8 +24,9 @@ public class PortfolioService {
             return projectRepository.getAllByPortfolio(portfolio.get());
         }
     }
-    public Long create(String name){
+    public int create(String name){
         Portfolio portfolio = new Portfolio(name);
+        System.out.println(portfolio.getId());
         portfolioRepository.save(portfolio);
         return portfolio.getId();
     }

@@ -17,14 +17,11 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Portfolio {
-    @SequenceGenerator(name = "portfolio_seq",
-            sequenceName = "portfolio_seq",
-            allocationSize = 1)
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "portfolio_seq")
-    private Long id;
+    @Column(name = "portfolio_id", unique = true, nullable = false)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "ORACLE_DB_SEQ_ID")
+    private int id;
     private String name;
 
     private List<Project> projects;
@@ -44,12 +41,8 @@ public class Portfolio {
         this.projects = new ArrayList<>();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Id
-    public Long getId() {
+    public int getId() {
         return id;
     }
 }

@@ -20,7 +20,7 @@ public class PortfolioController {
     }
 
     @PostMapping(path = "create")
-    public Long addPortfolio(@RequestParam("name") String name){
+    public int addPortfolio(@RequestParam("name") String name){
         return portfolioService.create(name);
     }
 }
