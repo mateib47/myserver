@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PortfolioRepository extends JpaRepository<Portfolio, Long>{
+public interface PortfolioRepository extends JpaRepository<Portfolio, String>{
      Optional<Portfolio> findPortfolioByName(String name);
 
 }

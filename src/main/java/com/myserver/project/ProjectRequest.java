@@ -19,7 +19,5 @@ public class ProjectRequest {
     private String description;
     private String imgLink;
     private String ghLink;
-    private ProjectSection section;
     private String portfolioName;
-
 }

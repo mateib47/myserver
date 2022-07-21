@@ -19,6 +19,7 @@ public class ProjectService {
 //    }
 
     public Long addProject(ProjectRequest projectRequest) {
+        System.out.println(projectRequest.getPortfolioName());
         Optional<Portfolio> portfolio = portfolioRepository.findPortfolioByName(projectRequest.getPortfolioName());
         if(portfolio.isEmpty()){
             return null;
@@ -27,8 +28,8 @@ public class ProjectService {
                 projectRequest.getDescription(),
                 projectRequest.getImgLink(),
                 projectRequest.getGhLink(),
-                projectRequest.getSection(),
                 portfolio.get());
+        System.out.println(portfolio.get());
         projectRepository.save(project);
       //  portfolioRepository.
         return project.getId();

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/portfolio")
+@RequestMapping(path = "api/v1/project")
 @AllArgsConstructor
 public class ProjectController {
     private ProjectService projectService;

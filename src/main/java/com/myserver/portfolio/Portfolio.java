@@ -1,5 +1,6 @@
 package com.myserver.portfolio;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.myserver.person.Person;
 import com.myserver.project.Project;
 import lombok.EqualsAndHashCode;
@@ -19,11 +20,9 @@ import java.util.List;
 public class Portfolio {
     @Id
     @Column(name = "portfolio_id", unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
-    @SequenceGenerator(name = "id_Sequence", sequenceName = "ORACLE_DB_SEQ_ID")
-    private int id;
     private String name;
 
+    @JsonManagedReference
     private List<Project> projects;
 
     @OneToMany(targetEntity=Project.class, mappedBy="portfolio", fetch=FetchType.EAGER)
@@ -42,7 +41,7 @@ public class Portfolio {
     }
 
     @Id
-    public int getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 }

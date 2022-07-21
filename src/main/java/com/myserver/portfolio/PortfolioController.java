@@ -1,7 +1,6 @@
 package com.myserver.portfolio;
 
 import com.myserver.project.Project;
-import com.myserver.project.ProjectRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +14,12 @@ public class PortfolioController {
     private PortfolioService portfolioService;
 
     @GetMapping(path = "get")
-    public List<Project> getProjects(@Param("section") String name){
+    public List<Project> getProjects(@RequestParam("section") String name){
         return portfolioService.getProjects(name);
     }
 
     @PostMapping(path = "create")
-    public int addPortfolio(@RequestParam("name") String name){
+    public boolean addPortfolio(@RequestParam("name") String name){
         return portfolioService.create(name);
     }
 }

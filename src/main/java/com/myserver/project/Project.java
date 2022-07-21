@@ -1,5 +1,6 @@
 package com.myserver.project;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.myserver.portfolio.Portfolio;
 import lombok.*;
 
@@ -23,17 +24,16 @@ public class Project {
     private String description;
     private String imgLink;
     private String ghLink;
-    private ProjectSection section;
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "portfolioId")
     private Portfolio portfolio;
 
-    public Project(String title, String description, String imgLink, String ghLink, ProjectSection section, Portfolio portfolio) {
+    public Project(String title, String description, String imgLink, String ghLink, Portfolio portfolio) {
         this.title = title;
         this.description = description;
         this.imgLink = imgLink;
         this.ghLink = ghLink;
-        this.section = section;
         this.portfolio = portfolio;
     }
 }
