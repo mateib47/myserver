@@ -1,6 +1,7 @@
 package com.myserver.project;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.myserver.portfolio.Portfolio;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
     @SequenceGenerator(name = "project_seq",
             sequenceName = "project_seq",
@@ -20,7 +22,7 @@ public class Project {
             strategy = GenerationType.SEQUENCE,
             generator = "project_seq")
     private Long id;
-    private String title;
+    private String name;
     private String description;
     private String imgLink;
     private String ghLink;
@@ -29,11 +31,23 @@ public class Project {
     @JoinColumn(name = "portfolioId")
     private Portfolio portfolio;
 
-    public Project(String title, String description, String imgLink, String ghLink, Portfolio portfolio) {
-        this.title = title;
+    public Project(String name, String description, String imgLink, String ghLink, Portfolio portfolio) {
+        this.name = name;
         this.description = description;
         this.imgLink = imgLink;
         this.ghLink = ghLink;
         this.portfolio = portfolio;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", imgLink='" + imgLink + '\'' +
+                ", ghLink='" + ghLink + '\'' +
+                ", portfolio=" + portfolio +
+                '}';
     }
 }

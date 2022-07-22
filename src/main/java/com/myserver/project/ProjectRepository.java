@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
     public List<Project> getAllByPortfolio(Portfolio portfolio);
-
+    boolean existsProjectById(Long id);
 }
