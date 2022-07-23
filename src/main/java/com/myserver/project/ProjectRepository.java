@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
     public List<Project> getAllByPortfolio(Portfolio portfolio);
     boolean existsProjectById(Long id);
+    List<Project> getAllByDisplayTrue();
 }

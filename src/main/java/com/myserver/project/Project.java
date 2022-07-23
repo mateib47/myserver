@@ -6,6 +6,7 @@ import com.myserver.portfolio.Portfolio;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,17 +26,22 @@ public class Project {
     private String name;
     private String description;
     private String imgLink;
-    private String ghLink;
+    private String html_url;
+    private String homepage;
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "portfolioId")
     private Portfolio portfolio;
+    private boolean display=true;
+    @ElementCollection
+    private List<String> topics;
+    private String language;
 
-    public Project(String name, String description, String imgLink, String ghLink, Portfolio portfolio) {
+    public Project(String name, String description, String imgLink, String html_url, Portfolio portfolio) {
         this.name = name;
         this.description = description;
         this.imgLink = imgLink;
-        this.ghLink = ghLink;
+        this.html_url = html_url;
         this.portfolio = portfolio;
     }
 
@@ -46,8 +52,12 @@ public class Project {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", imgLink='" + imgLink + '\'' +
-                ", ghLink='" + ghLink + '\'' +
+                ", html_url='" + html_url + '\'' +
+                ", homepage='" + homepage + '\'' +
                 ", portfolio=" + portfolio +
+                ", display=" + display +
+                ", topics=" + topics +
+                ", language='" + language + '\'' +
                 '}';
     }
 }
