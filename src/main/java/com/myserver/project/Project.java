@@ -23,6 +23,7 @@ public class Project {
             strategy = GenerationType.SEQUENCE,
             generator = "project_seq")
     private Long id;
+    private String node_id;
     private String name;
     private String description;
     private String imgLink;
