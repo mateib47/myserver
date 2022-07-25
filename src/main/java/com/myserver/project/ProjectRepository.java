@@ -14,11 +14,11 @@ import java.util.Optional;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
     List<Project> getAllByPortfolio(Portfolio portfolio);
     List<Project> getAllByDisplayTrue();
-    Optional<Project> findProjectByNode_id(String id);
+    Optional<Project> findProjectByNodeId(String node_id);
 
     @Modifying
-    @Query("update Project p set p.name = :name, p.description=:description, p.homepage=:homepage, p.html_url=:html_url, p.language=:language where p.id = :id")
-    void updateProject(@Param(value = "id") String id, @Param(value = "name") String name,
-                     @Param(value = "description") String description,@Param(value = "html_url") String html_url,
+    @Query("update Project p set p.name = :name, p.description=:description, p.homepage=:homepage, p.ghUrl=:ghUrl, p.language=:language where p.id = :id")
+    void updateProject(@Param(value = "id") Long id, @Param(value = "name") String name,
+                     @Param(value = "description") String description,@Param(value = "ghUrl") String ghUrl,
                      @Param(value = "homepage") String homepage,@Param(value = "language") String language);
 }

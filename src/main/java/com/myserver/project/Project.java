@@ -2,6 +2,7 @@ package com.myserver.project;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.myserver.portfolio.Portfolio;
 import lombok.*;
 
@@ -23,11 +24,13 @@ public class Project {
             strategy = GenerationType.SEQUENCE,
             generator = "project_seq")
     private Long id;
-    private String node_id;
+    @JsonProperty("node_id")
+    private String nodeId;
     private String name;
     private String description;
     private String imgLink;
-    private String html_url;
+    @JsonProperty("html_url")
+    private String ghUrl;
     private String homepage;
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,11 +41,11 @@ public class Project {
     private List<String> topics;
     private String language;
 
-    public Project(String name, String description, String imgLink, String html_url, Portfolio portfolio) {
+    public Project(String name, String description, String imgLink, String ghUrl, Portfolio portfolio) {
         this.name = name;
         this.description = description;
         this.imgLink = imgLink;
-        this.html_url = html_url;
+        this.ghUrl = ghUrl;
         this.portfolio = portfolio;
     }
 
@@ -53,7 +56,7 @@ public class Project {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", imgLink='" + imgLink + '\'' +
-                ", html_url='" + html_url + '\'' +
+                ", html_url='" + ghUrl + '\'' +
                 ", homepage='" + homepage + '\'' +
                 ", portfolio=" + portfolio +
                 ", display=" + display +

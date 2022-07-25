@@ -66,9 +66,10 @@ public class ProjectService {
                 );
         List<Project> projects = responseEntity.getBody();
         projects.forEach((project -> {
-            Optional<Project> existingProj = projectRepository.findProjectByNode_id(project.getNode_id());
+            Optional<Project> existingProj = projectRepository.findProjectByNodeId(project.getNodeId());
             if(existingProj.isPresent()){
-                projectRepository.updateProject(existingProj.get().getId(), project.getName(), project.getDescription(), project.getHtml_url(), project.getHomepage(), project.getLanguage());
+                System.out.println(existingProj.get().getId());
+                projectRepository.updateProject(existingProj.get().getId(), project.getName(), project.getDescription(), project.getGhUrl(), project.getHomepage(), project.getLanguage());
             }else{
                 project = normalizeProject(project);
                 System.out.println(project);
