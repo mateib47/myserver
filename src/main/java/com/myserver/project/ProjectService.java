@@ -92,4 +92,14 @@ public class ProjectService {
     public List<Project> getProjects(){
         return projectRepository.getAllByDisplayTrue();
     }
+
+    public String addPortfolioToProj(Long projectId, String portfolioId) {
+        Optional<Portfolio> portfolio =  portfolioRepository.findPortfolioByName(portfolioId);
+        Optional <Project> project = projectRepository.findById(projectId);
+        if(portfolio.isEmpty()) return String.format("Portfolio with name %s not found", portfolioId);
+        if(project.isEmpty()) return String.format("Project with name %s not found", projectId);
+
+        projectRepository.updateProjectPortfolio(projectId, portfolio.get());
+        return "success";
+    }
 }

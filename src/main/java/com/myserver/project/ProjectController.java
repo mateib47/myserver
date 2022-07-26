@@ -35,4 +35,9 @@ public class ProjectController {
     public List<Project> getProjects(){
         return projectService.getProjects();
     }
+
+    @PutMapping(path = "addPortfolio")
+    public String addPortfolioToProj(@RequestParam Long projectId, @RequestParam String portfolioId){
+        return projectService.addPortfolioToProj(projectId, portfolioId);
+    }
 }
