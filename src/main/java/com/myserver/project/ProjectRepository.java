@@ -17,11 +17,12 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     List<Project> getAllByDisplayTrue();
     Optional<Project> findProjectByNodeId(String node_id);
 
+    @Transactional
     @Modifying
     @Query("update Project p set p.name = :name, p.description=:description, p.homepage=:homepage, p.ghUrl=:ghUrl, p.language=:language where p.id = :id")
     void updateProject(@Param(value = "id") Long id, @Param(value = "name") String name,
                      @Param(value = "description") String description,@Param(value = "ghUrl") String ghUrl,
-                     @Param(value = "homepage") String homepage,@Param(value = "language") String language);
+                     @Param(value = "homepage") String homepage,@Param(value = "language") String language);//fix update topics @Param(value = "topics") List<String> topics
 
     @Transactional
     @Modifying

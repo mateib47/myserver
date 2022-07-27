@@ -69,7 +69,13 @@ public class ProjectService {
             Optional<Project> existingProj = projectRepository.findProjectByNodeId(project.getNodeId());
             if(existingProj.isPresent()){
                 System.out.println(existingProj.get().getId());
-                projectRepository.updateProject(existingProj.get().getId(), project.getName(), project.getDescription(), project.getGhUrl(), project.getHomepage(), project.getLanguage());
+                projectRepository.updateProject(existingProj.get().getId(),
+                        project.getName(), project.getDescription(),
+                        project.getGhUrl(),
+                        project.getHomepage(),
+                        project.getLanguage()
+                       ); // project.getTopics()
+                //todo update topics
             }else{
                 project = normalizeProject(project);
                 System.out.println(project);
