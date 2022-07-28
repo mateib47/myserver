@@ -28,4 +28,10 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Modifying
     @Query("update Project p set p.portfolio = :portfolio where p.id = :id")
     void updateProjectPortfolio(@Param(value = "id") Long id, @Param(value = "portfolio") Portfolio portfolio);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Project p set p.topics=:topics WHERE p.id = :id")
+    void updateTopic(@Param(value = "id") Long id, @Param(value = "topics") List<String> topics);
+
 }

@@ -8,6 +8,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class ProjectService {
         return project.getId();
     }
 
+    @Transactional
     public boolean updateProjects() {
         final String uri = "https://api.github.com/users/mateib47/repos";
         RestTemplate restTemplate = new RestTemplate();
@@ -68,14 +70,23 @@ public class ProjectService {
         projects.forEach((project -> {
             Optional<Project> existingProj = projectRepository.findProjectByNodeId(project.getNodeId());
             if(existingProj.isPresent()){
-                System.out.println(existingProj.get().getId());
-                projectRepository.updateProject(existingProj.get().getId(),
-                        project.getName(), project.getDescription(),
-                        project.getGhUrl(),
-                        project.getHomepage(),
-                        project.getLanguage()
-                       ); // project.getTopics()
-                //todo update topics
+                Project existingPr = existingProj.get();
+                existingPr.setName(project.getName());
+                existingPr.setGhUrl(project.getGhUrl());
+                existingPr.setHomepage(project.getHomepage());
+                existingPr.setTopics(project.getTopics());
+
+//                projectRepository.updateProject(existingProj.get().getId(),
+//                        project.getName(), project.getDescription(),
+//                        project.getGhUrl(),
+//                        project.getHomepage(),
+//                        project.getLanguage()
+//                       ); // project.getTopics()
+//                System.out.println(project.getTopics());
+//                List list  = new ArrayList();
+//                list.add("okk");
+//                projectRepository.updateTopic(existingProj.get().getId(), null);
+
             }else{
                 project = normalizeProject(project);
                 System.out.println(project);
