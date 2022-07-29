@@ -13,11 +13,12 @@ import java.util.List;
 public class PortfolioController {
     private PortfolioService portfolioService;
 
+    @CrossOrigin
     @GetMapping(path = "get", params = {})
     public List<String> getSections(){
         return portfolioService.getAllSections();
     }
-
+    @CrossOrigin
     @GetMapping(path = "get", params = {"section"})
     public List<Project> getProjects(@RequestParam("section") String name){
         return portfolioService.getProjects(name);

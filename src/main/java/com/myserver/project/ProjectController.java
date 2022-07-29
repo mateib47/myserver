@@ -30,7 +30,7 @@ public class ProjectController {
             return "error";
         }
     }
-
+    @CrossOrigin
     @GetMapping(path = "get")
     public List<Project> getProjects(){
         return projectService.getProjects();
