@@ -29,4 +29,8 @@ public class PortfolioService {
         portfolioRepository.save(portfolio);
         return true;
     }
+
+    public List<String> getAllSections() {
+        return portfolioRepository.getAllByNameIsNotNull();
+    }
 }

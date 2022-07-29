@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PortfolioRepository extends JpaRepository<Portfolio, String>{
      Optional<Portfolio> findPortfolioByName(String name);
+     List <String> getAllByNameIsNotNull();
 
 }

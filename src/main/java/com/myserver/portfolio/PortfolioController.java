@@ -13,7 +13,12 @@ import java.util.List;
 public class PortfolioController {
     private PortfolioService portfolioService;
 
-    @GetMapping(path = "get")
+    @GetMapping(path = "get", params = {})
+    public List<String> getSections(){
+        return portfolioService.getAllSections();
+    }
+
+    @GetMapping(path = "get", params = {"section"})
     public List<Project> getProjects(@RequestParam("section") String name){
         return portfolioService.getProjects(name);
     }
