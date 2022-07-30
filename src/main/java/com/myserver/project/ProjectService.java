@@ -71,11 +71,11 @@ public class ProjectService {
             Optional<Project> existingProj = projectRepository.findProjectByNodeId(project.getNodeId());
             if(existingProj.isPresent()){
                 Project existingPr = existingProj.get();
-                existingPr.setName(project.getName());
                 existingPr.setGhUrl(project.getGhUrl());
                 existingPr.setHomepage(project.getHomepage());
                 existingPr.setTopics(project.getTopics());
-
+                existingPr.setDescription(project.getDescription());
+                existingPr.setName(normalizeName(project.getName()));
 //                projectRepository.updateProject(existingProj.get().getId(),
 //                        project.getName(), project.getDescription(),
 //                        project.getGhUrl(),
