@@ -26,21 +26,36 @@ public class Person {
     private Long id;
     private String firstName;
     private String lastName;
-    private String email;
-    private String description;
-    private String profileImgLink;
+    private String status;
     @ElementCollection
-    private List<String> socialsLinks;
-    @OneToMany
-    private List<Portfolio> portfolios;
+    private List<String> attributes;
+    private String description;
+    @ElementCollection
+    private List<String> boldedWords;
+
+    private String email;
+    private String github;
+    private String linkedin;
+    @ElementCollection
+    private List<WordCloud> words;
+    private String profileImgLink;
+
+//    @OneToMany
+//    private List<Portfolio> portfolios;
 
 
-    public Person(String firstName, String lastName, String email, String description, String profileImgLink, List<String> socialsLinks) {
+    public Person(String firstName, String lastName, String status, List<String> attributes, String description, List<String> boldedWords, String email, String github, String linkedin, List<WordCloud> words, String profileImgLink) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.status = status;
+        this.attributes = attributes;
         this.description = description;
+        this.boldedWords = boldedWords;
+        this.email = email;
+        this.github = github;
+        this.linkedin = linkedin;
+        this.words = words;
         this.profileImgLink = profileImgLink;
-        this.socialsLinks = socialsLinks;
+       // this.portfolios = portfolios;
     }
 }
