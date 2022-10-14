@@ -1,19 +1,19 @@
 package com.myserver.contact;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-
+@AllArgsConstructor
 public class ContactService {
-   // private final EmailSender emailSender;
+   private EmailSender emailSender;
 
     public String addContact(ContactRequest contactRequest) {
-        //todo
-        //boolean isValidEmail = emailValidator.test(contactRequest.getEmail());
-//        if (!isValidEmail) {
-//            throw new IllegalStateException("Email " + request.getEmail() + " not valid");
-//        }
-       // emailSender.send("my email", buildEmail(contactRequest.getEmail(), contactRequest.getMessage()));
+        boolean isValidEmail = emailSender.validate(contactRequest.getEmail());
+        if (!isValidEmail) {
+            throw new IllegalStateException("Email " + contactRequest.getEmail() + " not valid");
+        }
+        emailSender.send("bucur.matei@yahoo.com", buildEmail(contactRequest.getEmail(), contactRequest.getMessage()));
         return "success";
     }
     private String buildEmail(String name, String message) {
